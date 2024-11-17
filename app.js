@@ -6,7 +6,7 @@ const receipeRouter = require('./routes/receipeRoutes');
 const app = express();
 
 // define the root route
-app.use('/', receipeRouter);
+app.use('/api/v1/receipes', receipeRouter);
 
 
 // export the app

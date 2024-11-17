@@ -4,7 +4,12 @@ const receipeController = require('../controllers/receipeControllers');
 
 const receipeRouter = express.Router();
 
-receipeRouter.get('/', receipeController.test);
+receipeRouter.get('/', receipeController.getAllReceipes);
+receipeRouter.get('/:id', receipeController.getReceipesByID);
+receipeRouter.post('/:id', receipeController.createReceipes);
+receipeRouter.put('/:id', receipeController.updateReceipes);
+receipeRouter.delete('/:id', receipeController.deleteReceipes);
+
 
 module.exports = receipeRouter;
 

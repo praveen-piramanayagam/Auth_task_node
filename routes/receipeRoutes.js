@@ -6,7 +6,7 @@ const receipeRouter = express.Router();
 
 receipeRouter.get('/', receipeController.getAllReceipes);
 receipeRouter.get('/:id', receipeController.getReceipesByID);
-receipeRouter.post('/:id', receipeController.createReceipes);
+receipeRouter.post('/', receipeController.createReceipes);
 receipeRouter.put('/:id', receipeController.updateReceipes);
 receipeRouter.delete('/:id', receipeController.deleteReceipes);
 

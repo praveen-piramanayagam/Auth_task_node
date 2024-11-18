@@ -1,6 +1,6 @@
 // import express
 const express = require('express');
-const receipeRouter = require('./routes/receipeRoutes');
+const recipeRouter = require('./routes/recipeRoutes');
 
 // create an express app
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // define the root route
-app.use('/api/v1/receipes', receipeRouter);
+app.use('/api/v1/recipes', recipeRouter);
 
 
 // export the app

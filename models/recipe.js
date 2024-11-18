@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const receipeSchema = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -17,8 +17,9 @@ const receipeSchema = new mongoose.Schema({
     instructions: {
         type: String,
         required: true,
-    },
-
-});
-
-module.exports = mongoose.model('Receipe',receipeSchema,'Receipes');
+    } },
+    {
+        versionKey: false // Disable the __v field
+    });
+//(modalname,schemaname,collectionname)
+module.exports = mongoose.model('Recipe',recipeSchema,'Recipes');

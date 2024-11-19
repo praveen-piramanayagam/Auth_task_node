@@ -1,67 +1,64 @@
-
 const recipe = require('../models/recipe');
 
 const recipeController = {
-    getAllRecipes:async(request,response)=>{
+    getAllRecipes: async (request, response) => {
         try {
             const recipes = await recipe.find();
             response.status(200).json(recipes);
         } catch (error) {
-            response.status(500).json({message:"error"});
+            response.status(500).json({ message: "error" });
             console.log(error);
-            
         }
     },
 
-
-    getRecipesByID:async(request,response)=>{
+    getRecipesByID: async (request, response) => {
         try {
             // get the id from request parameters
-            const {id} = request.params;
+            const { id } = request.params;
 
-           // get the document for the matching id
-           const recipes = await recipe.findById(id);
+            // get the document for the matching id
+            const recipes = await recipe.findById(id);
 
-           if(!recipes){
-            response.status(400).json({message:"receipe not found!!"});
-           }
-           response.status(200).json(recipes);
-
+            if (!recipes) {
+                response.status(400).json({ message: "Recipe not found!!" });
+            }
+            response.status(200).json(recipes);
         } catch (error) {
-            response.status(500).json({message:"error"});
+            response.status(500).json({ message: "error" });
             console.log(error);
         }
     },
 
-
-    createRecipes:async(request,response)=>{
-        // console.log(request.body);
+    // Correctly defined createRecipes function inside the recipeController object
+    createRecipes: async (request, response) => {
         try {
-            const {name,category,prep_time,instructions} = request.body;
+            console.log(request.body); // Log the request body to check if it's being received correctly
+
+            const { name, category, prep_time, instructions } = request.body;
+
             const newRecipe = new recipe({
-                name,category,prep_time,instructions
+                name,
+                category,
+                prep_time,
+                instructions
             });
 
-            // save the new recipe object to db
-            await newRecipe.save();
+            const savedRecipe = await newRecipe.save();
+            response.status(201).json(savedRecipe);
 
-            // send a 201 created status code and the new recipe object
-            response.status(201).json(newRecipe);
         } catch (error) {
-            response.status(500).json({message:"error"});
-            console.log(error);
+            console.error('Error saving recipe:', error);
+            response.status(500).json({ message: 'Error saving recipe', error: error.message });
         }
-        
     },
 
-
-    updateRecipes:async(request,response)=>{
+    updateRecipes: async (request, response) => {
         try {
             // get the id from request parameters
-            const {id} = request.params;
+            const { id } = request.params;
 
             //extract the recipe details from request body
-            const {name} = request.body;
+            const { name } = request.body;
 
             //find the document by matching id
             const recipes = await recipe.findById(id);
@@ -71,30 +68,30 @@ const recipeController = {
 
             await recipes.save();
 
-            response.status(200).json({message:"updated successfully"});
-            
+            response.status(200).json({ message: "Updated successfully" });
+
         } catch (error) {
-            response.status(500).json({message:"error"});
+            response.status(500).json({ message: "error" });
             console.log(error);
         }
     },
 
-
-    deleteRecipes:async(request,response)=>{
+    deleteRecipes: async (request, response) => {
         try {
             // get the id from request parameters
-            const {id} = request.params;
+            const { id } = request.params;
 
             //find document by matching id and delete it
             const recipes = await recipe.findByIdAndDelete(id);
-            if(!recipes){
-                response.status(404).json({message:"Recipe not found"});
+            if (!recipes) {
+                response.status(404).json({ message: "Recipe not found" });
             }
-            response.status(200).json({message:"Deleted successfully"});
+            response.status(200).json({ message: "Deleted successfully" });
         } catch (error) {
-            response.status(500).json({message:"error"});
+            response.status(500).json({ message: "error" });
             console.log(error);
         }
     }
-}
+};
+
 module.exports = recipeController;

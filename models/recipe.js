@@ -17,9 +17,7 @@ const recipeSchema = new mongoose.Schema({
     instructions: {
         type: String,
         required: true,
-    } },
-    {
-        versionKey: false // Disable the __v field
-    });
-//(modalname,schemaname,collectionname)
+    } }
+);
+//(modalname,schema_name,collectionname)
 module.exports = mongoose.model('Recipe',recipeSchema,'Recipes');

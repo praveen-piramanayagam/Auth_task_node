@@ -29,10 +29,9 @@ const recipeController = {
         }
     },
 
-    // Correctly defined createRecipes function inside the recipeController object
     createRecipes: async (request, response) => {
         try {
-            console.log(request.body); // Log the request body to check if it's being received correctly
+            console.log(request.body);
 
             const { name, category, prep_time, instructions } = request.body;
 
@@ -42,7 +41,7 @@ const recipeController = {
                 prep_time,
                 instructions
             });
-
+  
             const savedRecipe = await newRecipe.save();
             response.status(201).json(savedRecipe);
 

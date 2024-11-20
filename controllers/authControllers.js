@@ -1,12 +1,14 @@
 const authController = {
     register: async(request,response)=>{
-        try {
-            
-            const {name,email,password} = request.body;
+        // try {
+
+        //     const {name,email,password} = request.body;
         
-        } catch (error) {
-                return response.status(500).json({error : error.message});
-        }
+        // } catch (error) {
+        //         return response.status(500).json({error : error.message});
+        // }
+        console.log("Registered");
+        
     },
     login: async(request,response)=>{
 

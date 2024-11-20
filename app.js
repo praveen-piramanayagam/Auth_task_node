@@ -1,6 +1,5 @@
 // import express
 const express = require('express');
-const recipeRouter = require('./routes/recipeRoutes');
 const authRouter = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
 
@@ -14,7 +13,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 // define the root route
-app.use('/api/v1/recipes', recipeRouter);
 app.use('/api/v1/auth', authRouter);  
 
 // export the app

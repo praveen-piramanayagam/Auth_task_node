@@ -11,7 +11,7 @@ app.use(express.json());
 
 // define the root route
 app.use('/api/v1/recipes', recipeRouter);
-app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/auth', authRouter);  
 
 // export the app
 module.exports = app;

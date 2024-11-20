@@ -15,7 +15,7 @@ const authController = {
     },
     logout: async(request,response)=>{
 
-    }
+    }  
 }
 
 module.exports = authController;

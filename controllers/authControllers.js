@@ -59,7 +59,7 @@ const authController = {
              const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
             //  console.log(token);
             //store the token in  the cookie
-            response.cookies('token',token, {httpOnly: true});
+            response.cookie('token',token, {httpOnly: true});
 
             return response.status(200).json({message:'Login successfull'});
             } 

@@ -59,7 +59,7 @@ const authController = {
              const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
             //  console.log(token);
             //store the token in  the cookie
-            response.cookie('token',token, {httpOnly: true});
+            response.cookies('token',token, {httpOnly: true});
 
             return response.status(200).json({message:'Login successfull'});
             } 
@@ -80,7 +80,24 @@ const authController = {
             console.error("Error during login:", error.message);
             return response.status(500).json({ error: error.message });
             }
-    }  
+    },
+
+    me: async (request,response)=>{
+        try {
+                //get the userid from request object
+                const userId = request.userId;
+
+                //find the user by id
+                const user = await User.findById(userId).select('-password -__v -createdAt -updatedAt -_id');
+
+                //return the user details
+                return response.status(200).json(user);
+                           
+        } catch (error) {
+            console.error("Error during fetching userdetails", error.message);
+            return response.status(500).json({ error: error.message });            
+        }
+    }
 }
 
 module.exports = authController;
